@@ -20,3 +20,4 @@ else
     echo "probleem kasutaja $kasutajanimi lisamisega"
     echo "probleemi kood on $?"
 fi
+#Skripti lõpp
