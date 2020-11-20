@@ -1,0 +1,24 @@
+
+#!/bin/bash
+## Yl1. Kasutaja lisamine ilma paroolita.
+###export !!!!PATH=$PATH:/usr/sbin!!!! tuleb kasutada juhul kui useradd ei tööt$
+#       echo -n  "Lisa kasutajanimi"
+#       read
+if [ $# -ne 1 ]
+then     echo "Kasutusjuhend: $0 kasutajanimi"
+else
+        PATH=$PATH:/usr/sbin
+        kasutajanimi=$1
+        useradd $kasutajanimi -m -s /bin/bash
+fi
+#$? - see on viimase käsu väljund kontrollimaks tulemust.
+
+if [ $? -eq 0 ]; then
+    echo "Kasutaja nimega $kasutajanimi on lisatud süsteemi"
+    cat /etc/passwd | grep $kasutajanimi
+    ls -la /home/$kasutajanimi
+else
+    echo "probleem kasutaja $kasutajanimi lisamisega"
+    echo "probleemi kood on $?"
+fi
+
