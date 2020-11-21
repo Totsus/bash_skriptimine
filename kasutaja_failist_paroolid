@@ -7,17 +7,19 @@ else
 	failinimi=$1
   if [ -f $failinimi -a -r $failinimi ]; then
     echo "fail on korras"
-
  for rida in $(cat $failinimi)
     do
-      # sellega peaks faili sisu olema nähtav, kui fail on kätte saadav ja nüüd echo asemel tuleb kutsuda vajalik skript
-      kasutajanimi=$(echo "$rida" | cut -f1 -d:)
-sh lisa_kasutaja $kasutajanimi 
-	echo "$rida" | passwd # sellega lisatakse kasutajale parool
-    done
-  else
-    echo "probleem failiga $failinimi"
-  fi
+# sellega peaks faili sisu olema nähtav, kui fail on kätte saadav ja nüüd echo asemel tuleb kutsuda vajalik skript
+
+	kasutajanimi=$( echo "$rida" | cut -d: -f1 )
+	sh lisa_kasutaja $kasutajanimi
+PATH=$PATH:/usr/sbin
+	echo "$rida" | chpasswd
+done
+else
+	echo "$failinimi on probleem"
+fi
+#	parool=$kasutajanimi@123
+#echo $parool | passwd  $kasutajanimi
 # parameetrite kontrolli lõpp
 fi
-
