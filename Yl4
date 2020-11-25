@@ -1,0 +1,28 @@
+#!/bin/bash
+##Ülesanne 4: võtta erinevatest failidest kasutaja nimi ja parool ning luua uus kasutaja ilma lisa skripti käivitamatta.
+## Alusta kasutaja nimde faili lisamisest
+if [ $# -ne 1 ]; then
+       echo "Kasutusjuhend: $0 failinimi"
+else
+        kasutajad=$1
+        parool=$(paste -d ":"  kasutajad paroolid) # kasutajad faili  paroolide kleepimine paroolide failist
+        echo "$parool"
+if [ -f $kasutajad -a -r $kasutajad ] ; then
+       echo "kasutaja fail on korras" #kontrollime, et kõik on valmis lisamaks kasutaja ja parool
+for rida in $(cat $kasutajad) # cat abil saab faili vaadata, kombineerida ja luua uusi.
+do
+PATH=$PATH:/usr/sbin #minu arvuti eripära -  käsud ei leia teed!!!!
+        kasutajanimi=$(echo "$rida")
+        useradd $kasutajanimi -m -s /bin/bash
+done
+for line in $parool
+do
+        echo "$line" | chpasswd
+grep "kasutaja" /etc/shadow
+
+done
+else
+        echo "probleem failiga $kasutajad4"
+
+fi
+fi
