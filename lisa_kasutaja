@@ -9,7 +9,7 @@ else
 	PATH=$PATH:/usr/sbin
 	kasutajanimi=$1
 	useradd $kasutajanimi -m -s /bin/bash
-fi
+
 #$? - see on viimase käsu väljund kontrollimaks tulemust.
 
 if [ $? -eq 0 ]; then
@@ -21,3 +21,4 @@ else
     echo "probleemi kood on $?"
 fi
 #Skripti lõpp
+fi

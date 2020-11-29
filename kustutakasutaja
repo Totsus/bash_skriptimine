@@ -6,16 +6,14 @@ if [ $# -ne 1 ]; then
 else
         failinimi=$1
   if [ -f $failinimi -a -r $failinimi ]; then
-    echo "fail on korras"
+    echo "Kustutamine käivitatud"
 
  for nimi in $(cat $failinimi)
     do
       # sellega peaks faili sisu olema nähtav, kui fail on kätte saadav ja nüüd$
       #echo $nimi
-
 PATH=$PATH:/usr/sbin
-echo "tee on avatud"
-userdel -f $nimi # sellega me laseme lisa_kasutaja skript tööle
+userdel -r -f $nimi # sellega me laseme kustutakasutaja skript tööle
     done
   else
     echo "probleem failiga $failinimi"
@@ -23,10 +21,4 @@ userdel -f $nimi # sellega me laseme lisa_kasutaja skript tööle
 # parameetrite kontrolli lõpp
 fi
 
-#PATH=$PATH:/usr/sbin
-#        read -p "Sisesta kustutava kasutaja nimi:$nimi "
-#
-#        do
-#	deluser $nimi
-#        echo "Kasutaja $UNAME on kustutatud" | grep "kasutaja" /etc/passwd
-#done
+#skripti lõpp
