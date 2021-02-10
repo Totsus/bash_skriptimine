@@ -10,6 +10,11 @@ if  [ $programm -eq 0 ];then
 
 elif [ $programm -eq 1 ]; then
 	echo "Programm on varasemalt paigaldatud" #kui programm on olemas tooimub programmi käivius ja kontroll
-	systemctl start apache2.service #service apache2 start
-	systemctl status apache2 #service apache2 status
+	systemctl start apache2.service #service apache2 start ei tööta minu masinas.
+	systemctl status apache2 #service apache2 status. ei tööta minu masinas
 fi 
+
+#Automaatne lehekülje muutmine
+sed -i "s/Apache2 Debian Default Page/VTo20 Kursuse lehekülg mida kasutada/g" /var/www/html/index.html
+sed -i "s/It works!/Tanel/g" /var/www/html/index.html
+#skripti lõpp
